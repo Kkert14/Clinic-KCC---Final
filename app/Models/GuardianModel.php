@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class GuardianModel extends Model
+{
+    protected $table = 'parents';
+    protected $primaryKey = 'parent_id';
+
+    protected $allowedFields = ['last_name', 'name', 'middle_name', 'contact', 'address'];
+
+    public function getRecords($start, $length, $searchValue = '')
+    {
+        $builder = $this->builder();
+        $builder->select('*');
+
+        if (!empty($searchValue)) {
+            $builder->groupStart()
+                ->orLike('last_name', $searchValue)
+                ->groupEnd();
+                
+        }
+
+        // Clone builder for filtered count before applying limit
+        $filteredBuilder = clone $builder;
+        $filteredRecords = $filteredBuilder->countAllResults();
+
+        $builder->limit($length, $start);
+        $data = $builder->get()->getResultArray();
+
+        return ['data' => $data, 'filtered' => $filteredRecords];
+    }
+}
