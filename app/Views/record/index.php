@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Individual Treatment Records</h1>
+          <h1 class="m-0">Clinic Student Records</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -24,7 +24,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">List of Individual Treatment Records</h3>
+              <h3 class="card-title">List of Students</h3>
               <div class="float-right">
                 <button type="button" class="btn btn-md btn-primary" data-toggle="modal" data-target="#AddNewModal">
                   <i class="fa fa-plus-circle fa fw"></i> Add New
@@ -44,8 +44,9 @@
                     <th>Age</th>
                     <th>Birthdate</th>
                     <th>Contact</th>
-                    <th>Course</th>
-                    <th>Year Level</th>
+                    <!--<th>Parent/Guardian</th>
+                    <th>Relation to Student</th>-->
+                    <th>Department</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -117,17 +118,12 @@
           </div>
 
           <div class="form-group">
-            <label>Course</label>
-            <input type="text" name="course" class="form-control">
-          </div>
-
-          <div class="form-group">
-            <label>Year Level</label>
-            <select class="form-control" name="year_level">
-              <option value="first">First</option>
-              <option value="second">Second</option>
-              <option value="third">Third</option>
-              <option value="fourth">Fourth</option>
+            <label>Department</label>
+            <select class="form-control" name="department">
+              <option value="Elementary">Elementary</option>
+              <option value="Highschool">Highschool</option>
+              <option value="Senior">Senior</option>
+              <option value="College">College</option>
             </select>
           </div>
 
@@ -204,18 +200,14 @@
                 <input type="text" name="contact" id="contact" class="form-control" required />
               </div>
 
-              <div class="form-group">
-                <label>Course</label>
-                <input type="text" name="course" id="course" class="form-control" required />
-              </div>
 
               <div class="form-group">
-            <label>Year Level</label>
-            <select class="form-control" name="year_level" id="year_level">
-              <option value="first">First</option>
-              <option value="second">Second</option>
-              <option value="third">Third</option>
-              <option value="fourth">Fourth</option>
+            <label>Department</label>
+            <select class="form-control" name="department" id="department">
+              <option value="Elementary">Elementary</option>
+              <option value="Highschool">Highschool</option>
+              <option value="Senior">Senior</option>
+              <option value="College">College</option>
             </select>
           </div>
 

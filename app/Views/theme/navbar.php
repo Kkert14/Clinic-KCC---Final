@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-warning" id="mainNavbar">
+<nav class="main-header navbar navbar-expand navbar-dark" id="mainNavbar">
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button">
@@ -6,23 +6,36 @@
             </a>
         </li>
 
-       <!-- <li class="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" class="nav-link" style="color: #fff;">
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="<?= base_url('dashboard') ?>" class="nav-link" style="color: #fff;">
+                <i class="fas fa-clinic-medical"></i>
                 Home
             </a>
-        </li> -->
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="<?= base_url('log') ?>" class="nav-link" style="color: #fff;">
+                <i class="nav-icon fas fa-list-alt"></i>
+                Logs
+            </a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="<?= base_url('users') ?>" class="nav-link" style="color: #fff;">
+                <i class="nav-icon fas fa-user-friends"></i>
+                Users
+            </a>
+        </li>
     </ul>
 
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="themeToggle" style="color: #fff;">
-            <i class="fas fa-sun"></i>
-        </a>
-       </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="themeToggle" style="color: #fff;">
+                <i class="fas fa-sun"></i>
+            </a>
+        </li>
 
         <li class="nav-item">
             <a style="color: #fff;" class="nav-link" href="#">
-                <?= session()->get('email') ?> 
+                <?= session()->get('email') ?>
                 <i class="far fa-user-circle" style="color: #fff; margin-left: 5px;"></i>
             </a>
         </li>

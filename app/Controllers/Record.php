@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
 use App\Models\RecordModel;
 use CodeIgniter\Controller;
 use App\Models\LogModel;
@@ -23,8 +22,7 @@ class Record extends Controller
         $age = $this->request->getPost('age');
         $birthdate = $this->request->getPost('birthdate');
         $contact = $this->request->getPost('contact');
-        $course = $this->request->getPost('course');
-        $year_level = $this->request->getPost('year_level');
+        $department = $this->request->getPost('department');
         
 
         $userModel = new \App\Models\RecordModel();
@@ -38,8 +36,7 @@ class Record extends Controller
             'age'       => $age,
             'birthdate'       => $birthdate,
             'contact'       => $contact,
-            'course'       => $course,
-            'year_level'       => $year_level,
+            'department'       => $department,
             
         ];
 
@@ -62,8 +59,7 @@ class Record extends Controller
         $age = $this->request->getPost('age');
         $birthdate = $this->request->getPost('birthdate');
         $contact = $this->request->getPost('contact');
-        $course = $this->request->getPost('course');
-        $year_level = $this->request->getPost('year_level');
+        $department = $this->request->getPost('department');
       
 
         $userData = [
@@ -74,8 +70,7 @@ class Record extends Controller
             'age'       => $age,
             'birthdate'       => $birthdate,
             'contact'       => $contact,
-            'course'       => $course,
-            'year_level'       => $year_level,
+            'department'       => $department,
             
         ];
 

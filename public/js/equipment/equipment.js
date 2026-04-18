@@ -9,7 +9,7 @@ function showToast(type, message) {
 $('#addUserForm').on('submit', function (e) {
     e.preventDefault();
     $.ajax({
-        url: baseUrl + 'record/save',
+        url: baseUrl + 'equipment/save',
         method: 'POST',
         data: $(this).serialize(),
         dataType: 'json',
@@ -17,12 +17,12 @@ $('#addUserForm').on('submit', function (e) {
             if (response.status === 'success') {
                 $('#AddNewModal').modal('hide');
                 $('#addUserForm')[0].reset();
-                showToast('success', 'record added successfully!');
+                showToast('success', 'equipment added successfully!');
                 setTimeout(() => {
                     location.reload();
                 }, 1000); 
             } else {
-                showToast('error', response.message || 'Failed to add record.');
+                showToast('error', response.message || 'Failed to add equipment.');
             }
         },
         error: function () {
@@ -34,27 +34,23 @@ $('#addUserForm').on('submit', function (e) {
 $(document).on('click', '.edit-btn', function () {
    const userId = $(this).data('id'); 
    $.ajax({
-    url: baseUrl + 'record/edit/' + userId,
+    url: baseUrl + 'equipment/edit/' + userId,
     method: 'GET',
     dataType: 'json',
     success: function (response) {
         if (response.data) {
-            $('#editUserModal #name').val(response.data.name);
-            $('#editUserModal #userId').val(response.data.record_id);
-            $('#editUserModal #last_name').val(response.data.last_name);
-            $('#editUserModal #middle_name').val(response.data.middle_name);
-            $('#editUserModal #sex').val(response.data.sex);
-            $('#editUserModal #age').val(response.data.age);
-            $('#editUserModal #birthdate').val(response.data.birthdate);
-            $('#editUserModal #contact').val(response.data.contact);
-            $('#editUserModal #department').val(response.data.department);
+            $('#editUserModal #equipment_name').val(response.data.equipment_name);
+            $('#editUserModal #userId').val(response.data.equipment_id);
+            $('#editUserModal #quantity').val(response.data.quantity);
+            $('#editUserModal #item_status').val(response.data.item_status);
+            $('#editUserModal #date_acquired').val(response.data.date_acquired);
             $('#editUserModal').modal('show');
         } else {
-            alert('Error fetching record data');
+            alert('Error fetching equipment data');
         }
     },
     error: function () {
-        alert('Error fetching record data');
+        alert('Error fetching equipment data');
     }
 });
 });
@@ -65,14 +61,14 @@ $(document).ready(function () {
         e.preventDefault(); 
 
         $.ajax({
-            url: baseUrl + 'record/update',
+            url: baseUrl + 'equipment/update',
             method: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
             success: function (response) {
                 if (response.success) {
                     $('#editUserModal').modal('hide');
-                    showToast('success', 'record Updated successfully!');
+                    showToast('success', 'equipment Updated successfully!');
                     setTimeout(() => location.reload(), 1000);
                 } else {
                     alert('Error updating: ' + (response.message || 'Unknown error'));
@@ -91,9 +87,9 @@ $(document).on('click', '.deleteUserBtn', function () {
     const csrfName = $('meta[name="csrf-name"]').attr('content');
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-    if (confirm('Are you sure you want to delete this record?')) {
+    if (confirm('Are you sure you want to delete this equipment?')) {
         $.ajax({
-            url: baseUrl + 'record/delete/' + userId,
+            url: baseUrl + 'equipment/delete/' + userId,
             method: 'POST', 
             data: {
                 _method: 'DELETE',
@@ -101,7 +97,7 @@ $(document).on('click', '.deleteUserBtn', function () {
             },
             success: function (response) {
                 if (response.success) {
-                    showToast('success', 'Record deleted successfully.');
+                    showToast('success', 'Medicine deleted successfully.');
                     setTimeout(() => location.reload(), 1000);
                 } else {
                     alert(response.message || 'Failed to delete.');
@@ -124,7 +120,7 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         ajax: {
-            url: baseUrl + 'record/fetchRecords',
+            url: baseUrl + 'equipment/fetchRecords',
             type: 'POST',
             headers: {
                 'X-CSRF-TOKEN': csrfToken
@@ -132,15 +128,11 @@ $(document).ready(function () {
         },
         columns: [
         { data: 'row_number' },
-        { data: 'record_id', visible: false },
-        { data: 'last_name' },
-        { data: 'name' },
-        { data: 'middle_name' },
-        { data: 'sex' },
-        { data: 'age' },
-        { data: 'birthdate' },
-        { data: 'contact' },
-        { data: 'department' },
+        { data: 'equipment_id', visible: false },
+        { data: 'equipment_name' },
+        { data: 'quantity' },
+        { data: 'item_status' },
+        { data: 'date_acquired' },
       
         {
             data: null,
@@ -148,10 +140,10 @@ $(document).ready(function () {
             searchable: false,
             render: function (data, type, row) {
                 return `
-                <button class="btn btn-sm btn-warning edit-btn" data-id="${row.record_id}">
+                <button class="btn btn-sm btn-warning edit-btn" data-id="${row.equipment_id}">
                 <i class="far fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-danger deleteUserBtn" data-id="${row.record_id}">
+                <button class="btn btn-sm btn-danger deleteUserBtn" data-id="${row.equipment_id}">
                 <i class="fas fa-trash-alt"></i>
                 </button>
                 `;
@@ -162,4 +154,3 @@ $(document).ready(function () {
         autoWidth: false
     });
 });
-

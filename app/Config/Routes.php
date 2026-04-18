@@ -36,6 +36,22 @@ $routes->post('guardian/update', 'Guardian::update');
 $routes->delete('guardian/delete/(:num)', 'Guardian::delete/$1');
 $routes->post('guardian/fetchRecords', 'Guardian::fetchRecords');
 
+// Medicines routes
+$routes->get('/medicine', 'Medicine::index');
+$routes->post('medicine/save', 'Medicine::save');
+$routes->get('medicine/edit/(:segment)', 'Medicine::edit/$1');
+$routes->post('medicine/update', 'Medicine::update');
+$routes->delete('medicine/delete/(:num)', 'Medicine::delete/$1');
+$routes->post('medicine/fetchRecords', 'Medicine::fetchRecords');
+
+// Equipment routes
+$routes->get('/equipment', 'Equipment::index');
+$routes->post('equipment/save', 'Equipment::save');
+$routes->get('equipment/edit/(:segment)', 'Equipment::edit/$1');
+$routes->post('equipment/update', 'Equipment::update');
+$routes->delete('equipment/delete/(:num)', 'Equipment::delete/$1');
+$routes->post('equipment/fetchRecords', 'Equipment::fetchRecords');
+
 
 // Logs routes for admin
 $routes->get('/log', 'Logs::log');

@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KCC CLINIC LOG IN</title>
+  <title>KCC Clinic Log In</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/fontawesome-free/css/all.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/adminlte/dist/css/adminlte.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/login.css') ?>">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">
-        <img src="<?= base_url('assets/img/KCC_Logo.jpg') ?>" width="30%">
+        <img src="<?= base_url('assets/img/school_clinic_logo_kcc.png') ?>" width="30%">
         <br>Kabankalan Catholic College <br><span style="font-weight: bold;">Clinic System</span> 
       </p>
 

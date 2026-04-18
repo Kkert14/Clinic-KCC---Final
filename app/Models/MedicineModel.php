@@ -4,12 +4,12 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class RecordModel extends Model
+class MedicineModel extends Model
 {
-    protected $table = 'records';
-    protected $primaryKey = 'record_id';
+    protected $table = 'medicines';
+    protected $primaryKey = 'medicine_id';
 
-    protected $allowedFields = ['last_name', 'name', 'middle_name', 'sex', 'age', 'birthdate', 'contact', 'department'];
+    protected $allowedFields = ['medicine_name', 'quantity', 'expiry_date', 'date_received',];
 
     public function getRecords($start, $length, $searchValue = '')
     {
@@ -18,7 +18,7 @@ class RecordModel extends Model
 
         if (!empty($searchValue)) {
             $builder->groupStart()
-                ->orLike('last_name', $searchValue)
+                ->orLike('medicine_name', $searchValue)
                 ->groupEnd();
                 
         }

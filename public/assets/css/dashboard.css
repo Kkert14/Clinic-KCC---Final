@@ -1,0 +1,96 @@
+.small-box {
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px -1px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, #2c7be5, #1f5fbf);
+}
+
+.small-box {
+    /* Move transition here so it applies to both 'hover' AND 'un-hover' */
+    transition: transform 0.3s ease-in-out;
+}
+
+.small-box:hover {
+    transform: translateY(-5px);
+}
+
+.small-box .icon {
+    opacity: 0.3;
+    transition: opacity 0.3s ease-in-out;
+    color: rgba(255,255,255,0.4);
+}
+
+.small-box:hover .icon {
+    opacity: 1; /* Optional: makes the icon light up on hover too */
+}
+
+
+.small-box-footer {
+    font-weight: 600;
+}
+
+.small-box.bg-primary:hover {
+    background-color: rgb(44, 92, 253) !important;
+}
+
+.small-box.bg-info:hover {
+    background-color: #1dc4de  !important;
+}
+
+.small-box.bg-warning:hover {
+    background-color: #eeff07 !important;
+}
+
+.small-box.bg-danger:hover {
+    background-color: #eb172c !important;
+}
+
+/*
+.content-wrapper {
+    background: linear-gradient(136deg,rgb(37, 95, 194), #2346d1);
+} */
+
+.content-header h1 {
+    font-weight: 600;
+   /* color: #171717; */
+}
+
+#mainNavbar {
+    background-color: #2c7be5 !important;
+}
+
+#brandLink {
+    background-color: #2c7be5 !important;
+}
+
+#brandLink .brand-text {
+    color: white !important;
+    font-weight: 800;
+}
+
+/* Dashboard boxes info*/
+
+.consultation-box {
+    background: linear-gradient(135deg, #2a1dde , #1d1dde);
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px -1px rgba(0,0,0,0.15);
+    transition: 0.3s ease;
+}
+
+.consultation-box:hover {
+    transform: translateY(-5px);
+}
+
+.consultation-box .inner h3,
+.consultation-box .inner p {
+    color: #fff;
+}
+
+.consultation-box .icon {
+    color: rgba(255,255,255,0.4);
+}
+
+.consultation-box .small-box-footer {
+    color: #fff !important;
+}
+
