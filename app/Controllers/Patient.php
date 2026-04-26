@@ -2,16 +2,17 @@
 
 namespace App\Controllers;
 
-use App\Models\RecordModel;
+use App\Models\PatientModel;
 use CodeIgniter\Controller;
 use App\Models\LogModel;
 
-class Record extends Controller
+class Patient extends Controller
 {
     public function index(){
-        $model = new RecordModel();
-        $data['record'] = $model->findAll();
-        return view('record/index', $data);
+        $model = new PatientModel();
+        $data['patient'] = $model->findAll();
+        return view('patient/index', $data);
+        
     }
 
     public function save(){
@@ -25,7 +26,7 @@ class Record extends Controller
         $department = $this->request->getPost('department');
         
 
-        $userModel = new \App\Models\RecordModel();
+        $userModel = new \App\Models\PatientModel();
         $logModel = new LogModel();
 
         $data = [
@@ -49,9 +50,9 @@ class Record extends Controller
     }
 
     public function update(){
-        $model = new RecordModel();
+        $model = new PatientModel();
         $logModel = new LogModel();
-        $userId = $this->request->getPost('record_id');
+        $userId = $this->request->getPost('patient_id');
         $name = $this->request->getPost('name');
         $last_name = $this->request->getPost('last_name');
         $middle_name = $this->request->getPost('middle_name');
@@ -91,7 +92,7 @@ class Record extends Controller
     }
 
     public function edit($id){
-        $model = new RecordModel();
+        $model = new PatientModel();
     $user = $model->find($id); // Fetch user by ID
 
     if ($user) {
@@ -102,7 +103,7 @@ class Record extends Controller
 }
 
 public function delete($id){
-    $model = new RecordModel();
+    $model = new PatientModel();
     $logModel = new LogModel();
     $user = $model->find($id);
     if (!$user) {
@@ -122,7 +123,7 @@ public function delete($id){
 public function fetchRecords()
 {
     $request = service('request');
-    $model = new \App\Models\RecordModel();
+    $model = new \App\Models\PatientModel();
 
     $start = $request->getPost('start') ?? 0;
     $length = $request->getPost('length') ?? 10;
@@ -146,4 +147,31 @@ public function fetchRecords()
     ]);
 }
 
+public function view($id)
+{
+    $model = new PatientModel();
+    $patient = $model->find($id);
+
+    if ($patient) {
+        return $this->response->setJSON(['data' => $patient]);
+    }
+
+    return $this->response->setJSON(['data' => null]);
+}
+
+// public function print($id)
+// {
+//     $model = new PatientModel();
+//     $data['patient'] = $model->find($id);
+
+//     return view('patient/print', $data);
+// }
+
+public function print($id)
+{
+    $model = new PatientModel();
+    $data['patient'] = $model->find($id);
+
+    return view('patient/print', $data);
+}
 }

@@ -37,7 +37,7 @@
                   <tr>
                     <th>No.</th>
                     <th style="display:none;">id</th>
-                    <th>Surname</th>
+                    <th>Last Name</th>
                     <th>Name</th>
                     <th>Middle Name</th>
                     <th>Contact</th>
@@ -75,7 +75,7 @@
         <div class="modal-body">
 
           <div class="form-group">
-            <label>Surname</label>
+            <label>Last Name</label>
             <input type="text" name="last_name" class="form-control" required>
           </div>
 
@@ -136,7 +136,7 @@
             <input type="hidden" id="userId" name="record_id">
 
              <div class="form-group">
-                <label>Surame</label>
+                <label>Last Name</label>
                 <input type="text" name="last_name" id="last_name" class="form-control" required />
               </div>
 

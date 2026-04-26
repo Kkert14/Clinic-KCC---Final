@@ -17,9 +17,30 @@ class App extends BaseConfig
      * E.g., http://example.com/
      */
     // public string $baseURL = 'http://localhost:8080/';
+    
+  public $baseURL = '';
 
-    public $baseURL = 'http://localhost:8080/';
+public function __construct()
+{
+    parent::__construct();
 
+    // Detect HTTPS (works with ngrok)
+    $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https';
+
+    $scheme = $isHttps ? 'https://' : 'http://';
+
+    // Safe fallback chain
+    if (!empty($_SERVER['HTTP_HOST'])) {
+        $host = $_SERVER['HTTP_HOST'];
+    } elseif (!empty($_SERVER['SERVER_NAME'])) {
+        $host = $_SERVER['SERVER_NAME'];
+    } else {
+        $host = 'localhost:8080';
+    }
+
+    $this->baseURL = $scheme . $host . '/';
+}
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
      * If you want to accept multiple Hostnames, set this.
@@ -137,7 +158,9 @@ class App extends BaseConfig
      * @see https://www.php.net/manual/en/timezones.php for list of timezones
      *      supported by PHP.
      */
-    public string $appTimezone = 'UTC';
+    // public string $appTimezone = 'UTC';
+    public string $appTimezone = 'Asia/Manila';
+    
 
     /**
      * --------------------------------------------------------------------------
@@ -161,6 +184,7 @@ class App extends BaseConfig
      * secure, the user will be redirected to a secure version of the page
      * and the HTTP Strict Transport Security (HSTS) header will be set.
      */
+    // public bool $forceGlobalSecureRequests = false;
     public bool $forceGlobalSecureRequests = false;
 
     /**
@@ -184,7 +208,14 @@ class App extends BaseConfig
      *
      * @var array<string, string>
      */
-    public array $proxyIPs = [];
+    //Original
+    // public array $proxyIPs = [];
+    //Original
+
+    // public array $proxyIPs = ['*'];
+    public array $proxyIPs = [
+        '*' => 'X-Forwarded-For',
+    ];
 
     /**
      * --------------------------------------------------------------------------

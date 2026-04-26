@@ -1,3 +1,4 @@
+<?php $role = session()->get('role'); ?>
 <nav class="main-header navbar navbar-expand navbar-dark" id="mainNavbar">
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -12,30 +13,58 @@
                 Home
             </a>
         </li>
+
+         <li class="nav-item d-none d-sm-inline-block">
+            <a href="<?= base_url('patient') ?>" class="nav-link" style="color: #fff;">
+                <i class="nav-icon fas fa-notes-medical"></i>
+                Records
+            </a>
+        </li>
+
+        <?php if (in_array($role, ['Admin', 'Doctor'])): ?>
+         <li class="nav-item d-none d-sm-inline-block">
+            <a href="<?= base_url('medicine') ?>" class="nav-link" style="color: #fff;">
+                <i class="nav-icon fas fa-briefcase-medical"></i>
+                Medicines
+            </a>
+        </li>
+
+         <li class="nav-item d-none d-sm-inline-block">
+            <a href="<?= base_url('equipment') ?>" class="nav-link" style="color: #fff;">
+                <i class="nav-icon fas fa-stethoscope"></i>
+                Equipments
+            </a>
+        </li>
+        <?php endif; ?>
+
+         <?php if ($role === 'Admin'): ?>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="<?= base_url('log') ?>" class="nav-link" style="color: #fff;">
                 <i class="nav-icon fas fa-list-alt"></i>
                 Logs
             </a>
         </li>
+
         <li class="nav-item d-none d-sm-inline-block">
             <a href="<?= base_url('users') ?>" class="nav-link" style="color: #fff;">
                 <i class="nav-icon fas fa-user-friends"></i>
                 Users
             </a>
         </li>
+        <?php endif; ?>
     </ul>
 
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <!-- darkTheme toggle -->
+        <!-- <li class="nav-item">
             <a class="nav-link" href="#" id="themeToggle" style="color: #fff;">
                 <i class="fas fa-sun"></i>
             </a>
-        </li>
+        </li> -->
 
         <li class="nav-item">
             <a style="color: #fff;" class="nav-link" href="#">
-                <?= session()->get('email') ?>
+                <?= ucfirst($role) ?> | <?= session()->get('email') ?>
                 <i class="far fa-user-circle" style="color: #fff; margin-left: 5px;"></i>
             </a>
         </li>

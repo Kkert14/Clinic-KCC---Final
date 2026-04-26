@@ -1,7 +1,124 @@
+<?php $role = session()->get('role'); ?>
+<aside class="main-sidebar sidebar-light-light sidebar-light elevation-5" id="mainSidebar">
+  <div class="brand-link bg-warning" id="brandLink" style="cursor: default; border-bottom: 1px rgba(255, 255, 255);">
+    <img src="<?= base_url('assets/adminlte/dist/img/KCC_Logo.png') ?>"
+      alt="AdminLTE Logo"
+      class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-light" style="color: white">KCC Clinic</span>
+  </div>
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a href="<?= base_url('dashboard') ?>" class="nav-link <?= is_active(1, 'dashboard') ?>">
+            <i class="nav-icon fas fa-clinic-medical"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+
+       <?php if ($role === 'Admin'): ?>
+        <li class="nav-item">
+          <a href="<?= base_url('log') ?>" class="nav-link <?= is_active(1, 'log') ?>">
+            <i class="nav-icon fas fa-list-alt"></i>
+            <p>Activity Logs</p>
+          </a>
+        </li>
+       <?php endif; ?>
+
+        <li class="nav-item has-treeview <?= is_active(1, 'patient') ?>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-notes-medical"></i>
+            <p>
+              Records
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+
+          <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+              <a href="<?= base_url('patient') ?>" class="nav-link <?= is_active(1, 'patient') ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Patients</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?= base_url('guardian') ?>" class="nav-link <?= is_active(1, 'guardian') ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Parents / Guardians</p>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+        <?php if (in_array($role, ['Admin', 'Doctor'])): ?>
+        <li class="nav-item has-treeview <?= is_active(1, 'medicine') || is_active(1, 'equipment') ?>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-boxes"></i>
+            <p>
+              Inventory
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+
+          <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+              <a href="<?= base_url('medicine') ?>" class="nav-link <?= is_active(1, 'medicine') ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Medicine</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?= base_url('equipment') ?>" class="nav-link <?= is_active(1, 'equipment') ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Equipment</p>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+          <?php endif; ?>
+          <?php if ($role === 'Admin'): ?>
+        <li class="nav-item has-treeview <?= is_active(1, 'users') ?>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user-shield"></i>
+            <p>
+              Staff
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+
+          <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+              <a href="<?= base_url('users') ?>" class="nav-link <?= is_active(1, 'users') ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Users</p>
+              </a>
+            </li>
+            <?php endif; ?>
+          </ul>
+      
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+</aside>
+
 <style type="text/css">
   .nav-sidebar .nav-link {
     position: relative;
     transition: background 0.2s ease;
+  }
+  
+  .main-sidebar {
+    background: #f0f6ff;
   }
 
   /* Orange left bar */
@@ -85,110 +202,3 @@
     /* slightly lighter bg on hover/active */
   }
 </style>
-
-
-<aside class="main-sidebar sidebar-light-light sidebar-light elevation-5" id="mainSidebar">
-  <div class="brand-link bg-warning" id="brandLink" style="cursor: default; border-bottom: 1px rgba(255, 255, 255);">
-    <img src="<?= base_url('assets/adminlte/dist/img/KCC_Logo.png') ?>"
-      alt="AdminLTE Logo"
-      class="brand-image img-circle elevation-3"
-      style="opacity: .8">
-    <span class="brand-text font-weight-light" style="color: white">KCC Clinic</span>
-  </div>
-  <div class="sidebar">
-    <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item">
-          <a href="<?= base_url('dashboard') ?>" class="nav-link <?= is_active(1, 'dashboard') ?>">
-            <i class="nav-icon fas fa-clinic-medical"></i>
-            <p>Dashboard</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<?= base_url('log') ?>" class="nav-link <?= is_active(1, 'log') ?>">
-            <i class="nav-icon fas fa-list-alt"></i>
-            <p>Activity Logs</p>
-          </a>
-        </li>
-
-        <li class="nav-item has-treeview <?= is_active(1, 'record') ?>">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-notes-medical"></i>
-            <p>
-              Records
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-
-          <ul class="nav nav-treeview">
-
-            <li class="nav-item">
-              <a href="<?= base_url('record') ?>" class="nav-link <?= is_active(1, 'record') ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Students</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="<?= base_url('guardian') ?>" class="nav-link <?= is_active(1, 'guardian') ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Parents / Guardians</p>
-              </a>
-            </li>
-
-          </ul>
-        </li>
-
-        <li class="nav-item has-treeview <?= is_active(1, 'medicine') || is_active(1, 'equipment') ?>">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-boxes"></i>
-            <p>
-              Inventory
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-
-          <ul class="nav nav-treeview">
-
-            <li class="nav-item">
-              <a href="<?= base_url('medicine') ?>" class="nav-link <?= is_active(1, 'medicine') ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Medicine</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="<?= base_url('equipment') ?>" class="nav-link <?= is_active(1, 'equipment') ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Equipment</p>
-              </a>
-            </li>
-
-          </ul>
-        </li>
-
-        <li class="nav-item has-treeview <?= is_active(1, 'users') ?>">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-user-shield"></i>
-            <p>
-              Staff
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-
-          <ul class="nav nav-treeview">
-
-            <li class="nav-item">
-              <a href="<?= base_url('users') ?>" class="nav-link <?= is_active(1, 'users') ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Users</p>
-              </a>
-            </li>
-
-          </ul>
-        </li>
-
-      </ul>
-    </nav>
-  </div>
-</aside>

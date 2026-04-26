@@ -12,14 +12,14 @@
                     <h1 class="m-0">Dashboard</h1>
                 </div>
 
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">
                             <a href="<?= base_url('dashboard') ?>">Home</a>
                         </li>
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -39,7 +39,7 @@
                     <div class="small-box bg-primary">
 
                         <div class="inner">
-                            <h3><?= $recordCount ?></h3>
+                            <h3><?= $patientCount ?></h3>
                             <p>Clinic Records</p>
                         </div>
 
@@ -47,7 +47,7 @@
                             <i class="fas fa-notes-medical"></i>
                         </div>
 
-                        <a href="<?= base_url('record') ?>" class="small-box-footer">
+                        <a href="<?= base_url('patient') ?>" class="small-box-footer">
                             More info <i class="fas fa-arrow-circle-right"></i>
                         </a>
 
@@ -56,76 +56,79 @@
                 </div>
 
 
-                <!-- Medicines (placeholder until medicine table ready) -->
-                <div class="col-lg-3 col-6">
+                
+                <?php if (in_array($role, ['Admin', 'Doctor'])): ?>
+                    <div class="col-lg-3 col-6">
 
-                    <div class="small-box consultation-box">
+                        <div class="small-box consultation-box">
 
-                        <div class="inner">
-                            <h3><?= $medicineCount ?></h3>
-                            <p>Clinic Medicines</p>
+                            <div class="inner">
+                                <h3><?= $medicineCount ?></h3>
+                                <p>Clinic Medicines</p>
+                            </div>
+
+                            <div class="icon">
+                                <i class="fas fa-briefcase-medical"></i>
+                            </div>
+
+                            <a href="<?= base_url('medicine') ?>" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+
                         </div>
-
-                        <div class="icon">
-                            <i class="fas fa-briefcase-medical"></i>
-                        </div>
-
-                        <a href="<?= base_url('medicine') ?>" class="small-box-footer">
-                            More info <i class="fas fa-arrow-circle-right"></i>
-                        </a>
 
                     </div>
-
-                </div>
-
+                <?php endif; ?>
 
 
 
                 <!-- Equipment -->
-                <div class="col-lg-3 col-6">
+                <?php if (in_array($role, ['Admin', 'Doctor'])): ?>
+                    <div class="col-lg-3 col-6">
 
-                    <div class="small-box bg-primary">
+                        <div class="small-box bg-primary">
 
-                        <div class="inner">
-                            <h3><?= $equipmentCount ?></h3>
-                            <p>Clinic Equipment</p>
+                            <div class="inner">
+                                <h3><?= $equipmentCount ?></h3>
+                                <p>Clinic Equipment</p>
+                            </div>
+
+                            <div class="icon">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+
+                            <a href="<?= base_url("equipment") ?>" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+
                         </div>
-
-                        <div class="icon">
-                            <i class="fas fa-stethoscope"></i>
-                        </div>
-
-
-                        <a href="<?= base_url("equipment") ?>" class="small-box-footer">
-                            More info <i class="fas fa-arrow-circle-right"></i>
-                        </a>
 
                     </div>
-
-                </div>
+                <?php endif; ?>
 
                 <!-- Users -->
-                <div class="col-lg-3 col-6">
+                <?php if ($role === 'Admin'): ?>
+                    <div class="col-lg-3 col-6">
 
-                    <div class="small-box consultation-box">
+                        <div class="small-box consultation-box">
 
-                        <div class="inner">
-                            <h3><?= $userCount ?></h3>
-                            <p>System Users</p>
+                            <div class="inner">
+                                <h3><?= $userCount ?></h3>
+                                <p>System Users</p>
+                            </div>
+
+                            <div class="icon">
+                                <i class="fas fa-user-nurse"></i>
+                            </div>
+
+                            <a href="<?= base_url("users") ?>" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+
                         </div>
-
-                        <div class="icon">
-                            <i class="fas fa-user-nurse"></i>
-                        </div>
-
-
-                        <a href="<?= base_url("users") ?>" class="small-box-footer">
-                            More info <i class="fas fa-arrow-circle-right"></i>
-                        </a>
 
                     </div>
-
-                </div>
+                <?php endif; ?>
 
 
             </div>

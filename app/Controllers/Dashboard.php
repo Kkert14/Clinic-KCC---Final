@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\RecordModel;
+use App\Models\PatientModel;
 use App\Models\MedicineModel;
 use App\Models\EquipmentModel;
 use App\Models\UserModel;
@@ -14,23 +14,28 @@ class Dashboard extends BaseController
         if (!session()->get('user_id')) {
             return redirect()->to('/login');
         }
-        $recordModel = new RecordModel();
+
+        $role = session()->get('role');
+
+        $patientModel = new PatientModel();
         $medicineModel = new MedicineModel();
         $equipmentModel = new EquipmentModel();
         $userModel = new UserModel();
-        $todayConsultationsModel = new RecordModel();
 
         $data = [
-            'recordCount' => $recordModel->countAll(),
-            'medicineCount' => $medicineModel->countAll(),
-            'equipmentCount' => $equipmentModel->countAll(),
-            'userCount' => $userModel->countAll(),
-            'todayConsultations' => $todayConsultationsModel->countAll()
+            'patientCount' => $patientModel->countAll(),
+            'todayConsultations' => $patientModel->countAll(),
+            'role' => $role
         ];
 
-        
+        if (in_array($role, ['Admin', 'Doctor'])) {
+            $data['medicineCount'] = $medicineModel->countAll();
+            $data['equipmentCount'] = $equipmentModel->countAll();
+        }
 
-        
+        if ($role === 'Admin') {
+            $data['userCount'] = $userModel->countAll();
+        }
 
         return view('dashboard', $data);
     }

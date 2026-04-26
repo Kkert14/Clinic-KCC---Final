@@ -44,10 +44,10 @@
     background-color: #eb172c !important;
 }
 
-/*
+
 .content-wrapper {
-    background: linear-gradient(136deg,rgb(37, 95, 194), #2346d1);
-} */
+    background: #f0f6ff;
+}
 
 .content-header h1 {
     font-weight: 600;

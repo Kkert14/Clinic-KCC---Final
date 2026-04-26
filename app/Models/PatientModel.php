@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class RecordModel extends Model
+class PatientModel extends Model
 {
-    protected $table = 'records';
-    protected $primaryKey = 'record_id';
+    protected $table = 'patients';
+    protected $primaryKey = 'patient_id';
 
     protected $allowedFields = ['last_name', 'name', 'middle_name', 'sex', 'age', 'birthdate', 'contact', 'department'];
 
