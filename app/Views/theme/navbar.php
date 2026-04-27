@@ -14,10 +14,10 @@
             </a>
         </li>
 
-         <li class="nav-item d-none d-sm-inline-block">
+        <li class="nav-item d-none d-sm-inline-block">
             <a href="<?= base_url('patient') ?>" class="nav-link" style="color: #fff;">
                 <i class="nav-icon fas fa-notes-medical"></i>
-                Records
+                Patients
             </a>
         </li>
 
@@ -29,35 +29,36 @@
         </li>
 
         <?php if (in_array($role, ['Admin', 'Doctor'])): ?>
-         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= base_url('medicine') ?>" class="nav-link" style="color: #fff;">
-                <i class="nav-icon fas fa-briefcase-medical"></i>
-                Medicines
-            </a>
-        </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="<?= base_url('medicine') ?>" class="nav-link" style="color: #fff;">
+                    <i class="nav-icon fas fa-briefcase-medical"></i>
+                    Medicines
+                </a>
+            </li>
 
-         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= base_url('equipment') ?>" class="nav-link" style="color: #fff;">
-                <i class="nav-icon fas fa-stethoscope"></i>
-                Equipments
-            </a>
-        </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="<?= base_url('equipment') ?>" class="nav-link" style="color: #fff;">
+                    <i class="nav-icon fas fa-stethoscope"></i>
+                    Equipments
+                </a>
+            </li>
         <?php endif; ?>
 
-         <?php if ($role === 'Admin'): ?>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= base_url('log') ?>" class="nav-link" style="color: #fff;">
-                <i class="nav-icon fas fa-list-alt"></i>
-                Logs
-            </a>
-        </li>
-
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= base_url('users') ?>" class="nav-link" style="color: #fff;">
-                <i class="nav-icon fas fa-user-friends"></i>
-                Users
-            </a>
-        </li>
+        <?php if (in_array($role, ['Admin', 'Doctor'])): ?>
+            <?php if ($role === 'Admin'): ?>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="<?= base_url('log') ?>" class="nav-link" style="color: #fff;">
+                        <i class="nav-icon fas fa-list-alt"></i>
+                        Logs
+                    </a>
+                </li>
+            <?php endif; ?>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="<?= base_url('users') ?>" class="nav-link" style="color: #fff;">
+                    <i class="nav-icon fas fas fa-user-shield"></i>
+                    Staff
+                </a>
+            </li>
         <?php endif; ?>
     </ul>
 

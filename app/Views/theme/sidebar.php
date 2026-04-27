@@ -17,14 +17,7 @@
           </a>
         </li>
 
-       <?php if ($role === 'Admin'): ?>
-        <li class="nav-item">
-          <a href="<?= base_url('log') ?>" class="nav-link <?= is_active(1, 'log') ?>">
-            <i class="nav-icon fas fa-list-alt"></i>
-            <p>Activity Logs</p>
-          </a>
-        </li>
-       <?php endif; ?>
+
 
         <li class="nav-item has-treeview <?= is_active(1, 'patient') ?>">
           <a href="#" class="nav-link">
@@ -50,69 +43,79 @@
                 <p>Parents / Guardians</p>
               </a>
             </li>
-            
+
             <li class="nav-item">
-                  <a href="<?= base_url('appointment') ?>" class="nav-link <?= is_active(1, 'appointment') ?>">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Appointments</p>
-                  </a>
-                </li>
+              <a href="<?= base_url('appointment') ?>" class="nav-link <?= is_active(1, 'appointment') ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Appointments</p>
+              </a>
+            </li>
 
           </ul>
         </li>
 
 
         <?php if (in_array($role, ['Admin', 'Doctor'])): ?>
-        <li class="nav-item has-treeview <?= is_active(1, 'medicine') || is_active(1, 'equipment') ?>">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-boxes"></i>
-            <p>
-              Inventory
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
+          <li class="nav-item has-treeview <?= is_active(1, 'medicine') || is_active(1, 'equipment') ?>">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-boxes"></i>
+              <p>
+                Inventory
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
 
-          <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview">
 
-            <li class="nav-item">
-              <a href="<?= base_url('medicine') ?>" class="nav-link <?= is_active(1, 'medicine') ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Medicine</p>
-              </a>
-            </li>
+              <li class="nav-item">
+                <a href="<?= base_url('medicine') ?>" class="nav-link <?= is_active(1, 'medicine') ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Medicine</p>
+                </a>
+              </li>
 
-            <li class="nav-item">
-              <a href="<?= base_url('equipment') ?>" class="nav-link <?= is_active(1, 'equipment') ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Equipment</p>
-              </a>
-            </li>
+              <li class="nav-item">
+                <a href="<?= base_url('equipment') ?>" class="nav-link <?= is_active(1, 'equipment') ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Equipment</p>
+                </a>
+              </li>
 
-          </ul>
-        </li>
-          <?php endif; ?>
-          <?php if ($role === 'Admin'): ?>
-        <li class="nav-item has-treeview <?= is_active(1, 'users') ?>">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-user-shield"></i>
-            <p>
-              Staff
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
+            </ul>
+          </li>
+        <?php endif; ?>
 
-          <ul class="nav nav-treeview">
+        <?php if ($role === 'Admin'): ?>
+          <li class="nav-item">
+            <a href="<?= base_url('log') ?>" class="nav-link <?= is_active(1, 'log') ?>">
+              <i class="nav-icon fas fa-list-alt"></i>
+              <p>Activity Logs</p>
+            </a>
+          </li>
+        <?php endif; ?>
 
-            <li class="nav-item">
-              <a href="<?= base_url('users') ?>" class="nav-link <?= is_active(1, 'users') ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Users</p>
-              </a>
-            </li>
-            <?php endif; ?>
-          </ul>
-      
-        </li>
+        <?php if (in_array($role, ['Admin', 'Doctor'])): ?>
+          <!-- <li class="nav-item has-treeview <?= is_active(1, 'users') ?>">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-shield"></i>
+              <p>
+                Staff
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+
+            <ul class="nav nav-treeview"> -->
+
+          <li class="nav-item">
+            <a href="<?= base_url('users') ?>" class="nav-link <?= is_active(1, 'users') ?>">
+              <i class="nav-icon fas fa-user-shield"></i>
+              <p>Staff</p>
+            </a>
+          </li>
+        <?php endif; ?>
+        <!-- </ul>
+
+          </li> -->
 
       </ul>
     </nav>
@@ -124,7 +127,7 @@
     position: relative;
     transition: background 0.2s ease;
   }
-  
+
   .main-sidebar {
     background: #f0f6ff;
   }

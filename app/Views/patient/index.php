@@ -38,7 +38,7 @@
                     <th>No.</th>
                     <th style="display:none;">id</th>
                     <th>Last Name</th>
-                    <th>Name</th>
+                    <th>First Name</th>
                     <th>Middle Name</th>
                     <th>Sex</th>
                     <th>Age</th>
@@ -85,7 +85,7 @@
               </div>
 
               <div class="form-group">
-                <label>Name</label>
+                <label>First Name</label>
                 <input type="text" name="name" class="form-control" required>
               </div>
 
@@ -168,7 +168,7 @@
           </div>
 
           <div class="form-group">
-            <label>Name</label>
+            <label>First Name</label>
             <input type="text" name="name" id="name" class="form-control" required />
           </div>
 
@@ -235,7 +235,7 @@
 
       <div class="modal-body">
         <p><strong>Last Name:</strong> <span id="last_name"></span></p>
-        <p><strong>Name:</strong> <span id="name"></span></p>
+        <p><strong>First Name:</strong> <span id="name"></span></p>
         <p><strong>Sex:</strong> <span id="sex"></span></p>
         <p><strong>Age:</strong> <span id="age"></span></p>
         <p><strong>Birthdate:</strong> <span id="birthdate"></span></p>

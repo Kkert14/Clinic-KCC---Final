@@ -10,12 +10,19 @@ class Appointment extends Controller
 {
     // ===================== INDEX =====================
     public function index()
-    {
-        $model = new AppointmentModel();
-        $data['appointment'] = $model->findAll();
+{
+    $appointmentModel = new AppointmentModel();
+    $patientModel = new \App\Models\PatientModel();
+    $userModel = new \App\Models\UserModel();
 
-        return view('appointment/index', $data);
-    }
+    $data = [
+        'appointment' => $appointmentModel->findAll(),
+        'patients' => $patientModel->findAll(),
+        'users' => $userModel->findAll()
+    ];
+
+    return view('appointment/index', $data);
+}
 
     // ===================== SAVE =====================
     public function save()

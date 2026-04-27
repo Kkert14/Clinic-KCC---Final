@@ -25,7 +25,7 @@ $routes->get('/dashboard', 'Dashboard::index');
 | ADMIN ONLY ROUTES
 | (users + logs + full system control)
 */
-$routes->group('', ['filter' => 'rolefilter:admin'], function($routes) {
+$routes->group('', ['filter' => 'rolefilter:admin,doctor'], function ($routes) {
 
     // Users / Accounts
     $routes->get('/users', 'Users::index');
@@ -42,7 +42,7 @@ $routes->group('', ['filter' => 'rolefilter:admin'], function($routes) {
 /*
 | CLINIC MODULE (ADMIN + DOCTOR + NURSE)
 */
-$routes->group('', ['filter' => 'rolefilter:admin,doctor,nurse'], function($routes) {
+$routes->group('', ['filter' => 'rolefilter:admin,doctor,nurse'], function ($routes) {
 
     // Patients
     $routes->get('/patient', 'Patient::index');
@@ -69,13 +69,16 @@ $routes->group('', ['filter' => 'rolefilter:admin,doctor,nurse'], function($rout
     $routes->post('appointment/update', 'Appointment::update');
     $routes->delete('appointment/delete/(:num)', 'Appointment::delete/$1');
     $routes->post('appointment/fetchRecords', 'Appointment::fetchRecords');
+
+    $routes->get('doctors', 'Users::doctors', ['filter' => 'rolefilter:admin']);
+    $routes->get('nurses', 'Users::nurses', ['filter' => 'rolefilter:admin']);
 });
 
 /*
 | MEDICINE & EQUIPMENT
 | (Admin + Doctor only - optional restriction)
 */
-$routes->group('', ['filter' => 'rolefilter:admin,doctor'], function($routes) {
+$routes->group('', ['filter' => 'rolefilter:admin,doctor'], function ($routes) {
 
     // Medicines
     $routes->get('/medicine', 'Medicine::index');
