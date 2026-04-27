@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Record - <?= esc($patient['last_name']) ?>, <?= esc($patient['name']) ?></title>
+    <title>Medical Record - <?= esc($record['patient_name']) ?></title>
     <style>
         * {
             margin: 0;
@@ -162,54 +162,50 @@
 
     <!-- DOCUMENT TITLE -->
     <div class="doc-title">
-        <h2>Patient Record</h2>
-        <p>Patient Information Report</p>
+        <h2>Medical Record</h2>
+        <p>Patient Consultation Report</p>
     </div>
 
     <!-- RECORD ID -->
     <div class="record-id">
-        Patient ID: #<?= esc($patient['patient_id']) ?>
+        Record ID: #<?= esc($record['record_id']) ?>
     </div>
 
-    <!-- PERSONAL INFORMATION -->
-    <div class="section-title">Personal Information</div>
+    <!-- PATIENT INFORMATION -->
+    <div class="section-title">Patient Information</div>
     <table>
         <tr>
-            <th>Last Name</th>
-            <td><?= esc($patient['last_name']) ?></td>
+            <th>Patient Name</th>
+            <td><?= esc($record['patient_name']) ?></td>
         </tr>
         <tr>
-            <th>First Name</th>
-            <td><?= esc($patient['name']) ?></td>
+            <th>Date Consulted</th>
+            <td><?= esc($record['date_consulted']) ?></td>
         </tr>
         <tr>
-            <th>Middle Name</th>
-            <td><?= esc($patient['middle_name']) ?></td>
-        </tr>
-        <tr>
-            <th>Sex</th>
-            <td><?= esc($patient['sex']) ?></td>
-        </tr>
-        <tr>
-            <th>Age</th>
-            <td><?= esc($patient['age']) ?></td>
-        </tr>
-        <tr>
-            <th>Birthdate</th>
-            <td><?= esc($patient['birthdate']) ?></td>
+            <th>Attending Staff</th>
+            <td><?= esc($record['doctor_name']) ?></td>
         </tr>
     </table>
 
-    <!-- CONTACT DETAILS -->
-    <div class="section-title">Contact Details</div>
+    <!-- CLINICAL DETAILS -->
+    <div class="section-title">Clinical Details</div>
     <table>
         <tr>
-            <th>Contact Number</th>
-            <td><?= esc($patient['contact']) ?></td>
+            <th>Chief Complaint</th>
+            <td><?= esc($record['chief_complaint']) ?></td>
         </tr>
         <tr>
-            <th>Department</th>
-            <td><?= esc($patient['department']) ?></td>
+            <th>Diagnosis</th>
+            <td><?= esc($record['diagnosis']) ?></td>
+        </tr>
+        <tr>
+            <th>Treatment</th>
+            <td><?= esc($record['treatment']) ?></td>
+        </tr>
+        <tr>
+            <th>Remarks</th>
+            <td><?= esc($record['remarks']) ?></td>
         </tr>
     </table>
 
@@ -217,7 +213,8 @@
     <div class="footer">
         <div class="signature-block">
             <div class="line"></div>
-            <p>Patient / Guardian Signature</p>
+            <p><?= esc($record['doctor_name']) ?></p>
+            <p>Attending Staff</p>
         </div>
         <div class="signature-block">
             <div class="line"></div>

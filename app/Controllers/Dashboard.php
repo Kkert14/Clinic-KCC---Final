@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\PatientModel;
 use App\Models\MedicineModel;
 use App\Models\EquipmentModel;
+use App\Models\MedicalRecordModel;
 use App\Models\UserModel;
 
 class Dashboard extends BaseController
@@ -20,14 +21,26 @@ class Dashboard extends BaseController
         $patientModel = new PatientModel();
         $medicineModel = new MedicineModel();
         $equipmentModel = new EquipmentModel();
+        $medicalModel = new MedicalRecordModel();
         $userModel = new UserModel();
+
+        // 🔥 MERGED DASHBOARD STATS (ONLY ONE CALL)
+        $medicalStats = $medicalModel->getDashboardStats();
 
         $data = [
             'patientCount' => $patientModel->countAll(),
-            'todayConsultations' => $patientModel->countAll(),
+            'totalPatients' => $patientModel->countAll(),
+
+            // medical stats (MERGED)
+            'totalRecords'  => $medicalStats['totalRecords'],
+            'todayRecords'  => $medicalStats['todayRecords'],
+            'weekRecords'   => $medicalStats['weekRecords'],
+            'recentRecords' => $medicalStats['recentRecords'],
+
             'role' => $role
         ];
 
+        // role-based data
         if (in_array($role, ['Admin', 'Doctor'])) {
             $data['medicineCount'] = $medicineModel->countAll();
             $data['equipmentCount'] = $equipmentModel->countAll();

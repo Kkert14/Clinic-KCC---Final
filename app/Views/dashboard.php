@@ -56,7 +56,7 @@
                 </div>
 
 
-                
+
                 <?php if (in_array($role, ['Admin', 'Doctor'])): ?>
                     <div class="col-lg-3 col-6">
 
@@ -130,6 +130,120 @@
                     </div>
                 <?php endif; ?>
 
+                <!-- Split -->
+
+                <div class="col-lg-3 col-6">
+
+                    <div class="small-box consultation-box">
+
+                        <div class="inner">
+                            <h3><?= $totalRecords ?></h3>
+                            <p>Medical Records</p>
+                        </div>
+
+                        <div class="icon">
+                            <i class="fas fa-file-medical-alt"></i>
+                        </div>
+
+                        <a href="<?= base_url('medical-records') ?>" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+                <!-- Split -->
+                <div class="col-lg-3 col-6">
+
+                    <div class="small-box bg-info">
+
+                        <div class="inner">
+                            <h3><?= $todayRecords ?></h3>
+                            <p>Consultations Today</p>
+
+                            <small class="text-light">
+                                <?= date('F d, Y') ?>
+                            </small>
+                        </div>
+
+                        <div class="icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+
+                        <a href="<?= base_url('medical-records') ?>" class="small-box-footer">
+                            View records <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+                <!-- Split -->
+                <div class="col-lg-3 col-6">
+
+                    <div class="small-box consultation-box">
+
+                        <div class="inner">
+                            <h3><?= $weekRecords ?></h3>
+                            <p>Consultations (Last 7 Days)</p>
+
+                            <small>
+                                Since <?= date('M d', strtotime('-7 days')) ?>
+                            </small>
+                        </div>
+
+                        <div class="icon">
+                            <i class="fas fa-calendar-week"></i>
+                        </div>
+
+                        <a href="<?= base_url('medical-records') ?>" class="small-box-footer">
+                            View records <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- Split -->
+                <div class="container-fluid mt-3">
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            <h3 class="card-title">Recent Medical Consultations</h3>
+                        </div>
+
+                        <div class="card-body table-responsive">
+
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Patient</th>
+                                        <th>Doctor/Nurse</th>
+                                        <th>Diagnosis</th>
+                                        <th>Treatment</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php foreach ($recentRecords as $record): ?>
+                                        <tr>
+                                            <td><?= esc($record['date_consulted']) ?></td>
+                                            <td><?= esc($record['patient_name'] ?? 'Unknown Patient') ?></td>
+                                            <td><?= esc($record['staff_name'] ?? 'N/A') ?></td>
+                                            <td><?= esc($record['diagnosis']) ?></td>
+                                            <td><?= esc($record['treatment']) ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- -->
 
             </div>
 

@@ -10,7 +10,8 @@
   <div class="sidebar">
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item">
+        
+      <li class="nav-item">
           <a href="<?= base_url('dashboard') ?>" class="nav-link <?= is_active(1, 'dashboard') ?>">
             <i class="nav-icon fas fa-clinic-medical"></i>
             <p>Dashboard</p>
@@ -113,6 +114,13 @@
             </a>
           </li>
         <?php endif; ?>
+
+        <li class="nav-item">
+            <a href="<?= base_url('medical_record') ?>" class="nav-link <?= is_active(1, 'medical_record') ?>">
+              <i class="nav-icon fas fa-file-medical-alt"></i>
+              <p>Medical Records</p>
+            </a>
+          </li>
         <!-- </ul>
 
           </li> -->

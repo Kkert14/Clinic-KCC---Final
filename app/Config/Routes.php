@@ -70,6 +70,17 @@ $routes->group('', ['filter' => 'rolefilter:admin,doctor,nurse'], function ($rou
     $routes->delete('appointment/delete/(:num)', 'Appointment::delete/$1');
     $routes->post('appointment/fetchRecords', 'Appointment::fetchRecords');
 
+    // Medical Records
+    $routes->get('/medical_record',                       'MedicalRecord::index');
+    $routes->post('medical_record/save',                  'MedicalRecord::save');
+    $routes->get('medical_record/edit/(:num)',            'MedicalRecord::edit/$1');
+    $routes->post('medical_record/update',                'MedicalRecord::update');
+    $routes->delete('medical_record/delete/(:num)',       'MedicalRecord::delete/$1');
+    $routes->post('medical_record/fetchRecords',          'MedicalRecord::fetchRecords');
+    $routes->get('medical_record/view/(:num)',            'MedicalRecord::view/$1');
+    $routes->get('medical_record/print/(:num)',           'MedicalRecord::print/$1');
+
+    //Filters
     $routes->get('doctors', 'Users::doctors', ['filter' => 'rolefilter:admin']);
     $routes->get('nurses', 'Users::nurses', ['filter' => 'rolefilter:admin']);
 });

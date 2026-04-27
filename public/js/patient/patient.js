@@ -157,11 +157,11 @@ $(document).ready(function () {
   const csrfName = "csrf_test_name";
   const csrfToken = $('input[name="' + csrfName + '"]').val();
 
-  order: [[2, "asc"]],
-
+  
   $table.DataTable({
     processing: true,
     serverSide: true,
+    order: [[2, "asc"]],
     ajax: {
       url: baseUrl + "patient/fetchRecords",
       type: "POST",

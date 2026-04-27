@@ -23,6 +23,16 @@
     opacity: 1; /* Optional: makes the icon light up on hover too */
 }
 
+.small-box small {
+    display: block;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.small-box .inner h3 {
+    font-weight: 700;
+}
+
 
 .small-box-footer {
     font-weight: 600;
