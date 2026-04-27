@@ -50,9 +50,17 @@
                 <p>Parents / Guardians</p>
               </a>
             </li>
+            
+            <li class="nav-item">
+                  <a href="<?= base_url('appointment') ?>" class="nav-link <?= is_active(1, 'appointment') ?>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Appointments</p>
+                  </a>
+                </li>
 
           </ul>
         </li>
+
 
         <?php if (in_array($role, ['Admin', 'Doctor'])): ?>
         <li class="nav-item has-treeview <?= is_active(1, 'medicine') || is_active(1, 'equipment') ?>">

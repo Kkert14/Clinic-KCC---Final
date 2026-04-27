@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="card-body">
-               <table id="example1" class="table table-bordered table-striped table-sm">
+              <table id="example1" class="table table-bordered table-striped table-sm">
                 <thead>
                   <tr>
                     <th>No.</th>
@@ -41,6 +41,7 @@
                     <th>Quantity</th>
                     <th>Expiry Date</th>
                     <th>Date Received</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -52,87 +53,131 @@
       </div>
     </div>
 
-   
+
 
     <!-- ✅ Add New Modal -->
-   <div class="modal fade" id="AddNewModal" tabindex="-1">
-  <div class="modal-dialog">
-    <form id="addUserForm">
-      <?= csrf_field() ?>
-      <div class="modal-content">
+    <div class="modal fade" id="AddNewModal" tabindex="-1">
+      <div class="modal-dialog">
+        <form id="addUserForm">
+          <?= csrf_field() ?>
+          <div class="modal-content">
 
-        <div class="modal-header">
-          <h5 class="modal-title">
-            <i class="fa fa-plus-circle"></i> Add New
-          </h5>
-          <button type="button" class="close" data-dismiss="modal">
-            &times;
-          </button>
-        </div>
+            <div class="modal-header">
+              <h5 class="modal-title">
+                <i class="fa fa-plus-circle"></i> Add New
+              </h5>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
 
+            <div class="modal-body">
+
+              <div class="form-group">
+                <label for="medicines">Choose a medicine:</label>
+          <select class="form-control" id="medicine_name" name="medicine_name">
+            <option value="Biogesic">Biogesic (Paracetamol 500mg - fever & pain)</option>
+            <option value="Bioflu">Bioflu (Flu, colds, fever, antihistamine)</option>
+            <option value="Neozep">Neozep (Colds, sinus, nasal congestion)</option>
+            <option value="Decogesic">Decolgen (Colds, headache, fever)</option>
+            <option value="Alaxan">Alaxan FR (Body pain, muscle pain)</option>
+            <option value="Flanax">Flanax (Naproxen - pain & inflammation)</option>
+            <option value="Ponstan">Ponstan (Mefenamic acid - menstrual pain)</option>
+            <option value="Dolfenal">Dolfenal (Mefenamic acid - pain relief)</option>
+            <option value="Biogesic_forte">Biogesic Forte (Higher strength paracetamol variants)</option>
+            <option value="Diatabs">Diatabs (Diarrhea)</option>
+            <option value="Imodium">Imodium (Loperamide - diarrhea control)</option>
+            <option value="Kremil_s">Kremil-S (Acidity, hyperacidity, stomach pain)</option>
+            <option value="Maalox">Maalox (Acid reflux, stomach discomfort)</option>
+            <option value="Gaviscon">Gaviscon (Acid reflux, heartburn)</option>
+            <option value="Solmux">Solmux (Cough with phlegm)</option>
+            <option value="Robitussin">Robitussin (Cough relief)</option>
+            <option value="Tuseran">Tuseran (Dry cough & colds)</option>
+            <option value="Bioflu_kids">Biogesic Kids (Pediatric fever & pain)</option>
+            <option value="Tempra">Tempra (Paracetamol for kids)</option>
+            <option value="Cetirizine">Cetirizine (Allergy, antihistamine)</option>
+            <option value="Loratadine">Loratadine (Allergy relief)</option>
+          </select>
+              </div>
+
+              <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" name="quantity" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label>Expiry Date</label>
+                <input type="date" name="expiry_date" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label>Date Received</label>
+                <input type="date" name="date_received" class="form-control" required>
+              </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-dismiss="modal">
+                Cancel
+              </button>
+
+              <button type="submit" class="btn btn-primary">
+                Save
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+    </form>
+</div>
+</div>
+
+<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editUserModalLabel"><i class="far fa-edit fa fw"></i> Edit Record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="editUserForm">
+        <?= csrf_field() ?>
         <div class="modal-body">
 
+          <input type="hidden" id="userId" name="medicine_id">
+          <label for="medicines">Choose a medicine:</label>
+          <select class="form-control" id="medicine_name" name="medicine_name">
+            <option value="Biogesic">Biogesic (Paracetamol 500mg - fever & pain)</option>
+            <option value="Bioflu">Bioflu (Flu, colds, fever, antihistamine)</option>
+            <option value="Neozep">Neozep (Colds, sinus, nasal congestion)</option>
+            <option value="Decogesic">Decolgen (Colds, headache, fever)</option>
+            <option value="Alaxan">Alaxan FR (Body pain, muscle pain)</option>
+            <option value="Flanax">Flanax (Naproxen - pain & inflammation)</option>
+            <option value="Ponstan">Ponstan (Mefenamic acid - menstrual pain)</option>
+            <option value="Dolfenal">Dolfenal (Mefenamic acid - pain relief)</option>
+            <option value="Biogesic_forte">Biogesic Forte (Higher strength paracetamol variants)</option>
+            <option value="Diatabs">Diatabs (Diarrhea)</option>
+            <option value="Imodium">Imodium (Loperamide - diarrhea control)</option>
+            <option value="Kremil_s">Kremil-S (Acidity, hyperacidity, stomach pain)</option>
+            <option value="Maalox">Maalox (Acid reflux, stomach discomfort)</option>
+            <option value="Gaviscon">Gaviscon (Acid reflux, heartburn)</option>
+            <option value="Solmux">Solmux (Cough with phlegm)</option>
+            <option value="Robitussin">Robitussin (Cough relief)</option>
+            <option value="Tuseran">Tuseran (Dry cough & colds)</option>
+            <option value="Bioflu_kids">Biogesic Kids (Pediatric fever & pain)</option>
+            <option value="Tempra">Tempra (Paracetamol for kids)</option>
+            <option value="Cetirizine">Cetirizine (Allergy, antihistamine)</option>
+            <option value="Loratadine">Loratadine (Allergy relief)</option>
+          </select>
           <div class="form-group">
-            <label>Medicine Name</label>
-            <input type="text" name="medicine_name" class="form-control" required>
-          </div>
 
-            <div class="form-group">
-            <label>Quantity</label>
-            <input type="number" name="quantity" class="form-control" required>
           </div>
 
           <div class="form-group">
-            <label>Expiry Date</label>
-            <input type="date" name="expiry_date" class="form-control" required>
-          </div>
-
-          <div class="form-group">
-            <label>Date Received</label>
-            <input type="date" name="date_received" class="form-control" required>
-          </div>
-
-        </div>
-
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-dismiss="modal">
-            Cancel
-          </button>
-
-          <button type="submit" class="btn btn-primary">
-            Save
-          </button>
-        </div>
-
-      </div>
-    </form>
-  </div>
-</div>
-      </form>
-    </div>
-  </div>
-
-   <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editUserModalLabel"><i class="far fa-edit fa fw"></i> Edit Record</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form id="editUserForm">
-           <?= csrf_field() ?>
-          <div class="modal-body">
-
-            <input type="hidden" id="userId" name="medicine_id">
-
-             <div class="form-group">
-            <label>Medicine Name</label>
-            <input type="text" id="medicine_name" name="medicine_name" class="form-control" required>
-          </div>
-
-            <div class="form-group">
             <label>Quantity</label>
             <input type="number" id="quantity" name="quantity" class="form-control" required>
           </div>
@@ -147,16 +192,16 @@
             <input type="date" id="date_received" name="date_received" class="form-control" required>
           </div>
 
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class='fas fa-times-circle'></i> Cancel</button>
-            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
-          </div>
+
         </div>
-      </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class='fas fa-times-circle'></i> Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+        </div>
     </div>
+    </form>
   </div>
+</div>
 
 </section>
 </div>
@@ -165,6 +210,8 @@
 
 
 <?= $this->section('scripts') ?>
-<script> const baseUrl = "<?= base_url() ?>"; </script>
+<script>
+  const baseUrl = "<?= base_url() ?>";
+</script>
 <script src="<?= base_url('js/medicine/medicine.js') ?>"></script>
 <?= $this->endSection() ?>

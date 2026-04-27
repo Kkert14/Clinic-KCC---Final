@@ -61,6 +61,14 @@ $routes->group('', ['filter' => 'rolefilter:admin,doctor,nurse'], function($rout
     $routes->post('guardian/update', 'Guardian::update');
     $routes->delete('guardian/delete/(:num)', 'Guardian::delete/$1');
     $routes->post('guardian/fetchRecords', 'Guardian::fetchRecords');
+
+    // Appointments
+    $routes->get('/appointment', 'Appointment::index');
+    $routes->post('appointment/save', 'Appointment::save');
+    $routes->get('appointment/edit/(:segment)', 'Appointment::edit/$1');
+    $routes->post('appointment/update', 'Appointment::update');
+    $routes->delete('appointment/delete/(:num)', 'Appointment::delete/$1');
+    $routes->post('appointment/fetchRecords', 'Appointment::fetchRecords');
 });
 
 /*

@@ -41,6 +41,7 @@
                     <th>Quantity</th>
                     <th>Condition</th>
                     <th>Date Acquired</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -129,7 +130,7 @@
            <?= csrf_field() ?>
           <div class="modal-body">
 
-            <input type="hidden" id="userId" name="medicine_id">
+            <input type="hidden" id="userId" name="equipment_id">
 
              <div class="form-group">
             <label>Equipment Name</label>

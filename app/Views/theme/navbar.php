@@ -21,6 +21,13 @@
             </a>
         </li>
 
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="<?= base_url('guardian') ?>" class="nav-link" style="color: #fff;">
+                <i class="nav-icon fas fa-id-badge"></i>
+                Parents/Guardians
+            </a>
+        </li>
+
         <?php if (in_array($role, ['Admin', 'Doctor'])): ?>
          <li class="nav-item d-none d-sm-inline-block">
             <a href="<?= base_url('medicine') ?>" class="nav-link" style="color: #fff;">

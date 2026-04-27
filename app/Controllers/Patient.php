@@ -129,11 +129,37 @@ public function fetchRecords()
     $length = $request->getPost('length') ?? 10;
     $searchValue = $request->getPost('search')['value'] ?? '';
 
+    //Sorting part
+    $orderColumnIndex = $request->getPost('order')[0]['column'] ?? 2;
+    $orderDir = $request->getPost('order')[0]['dir'] ?? 'asc';
+
+    $columns = [
+        0 => 'patient_id',
+        2 => 'last_name',
+        3 => 'name',
+        4 => 'middle_name',
+        5 => 'sex',
+        6 => 'age',
+        7 => 'birthdate',
+        8 => 'contact',
+        9 => 'department'
+    ];
+
+    $orderColumn = $columns[$orderColumnIndex] ?? 'last_name';
+
     $totalRecords = $model->countAll();
-    $result = $model->getRecords($start, $length, $searchValue);
+
+    $result = $model->getRecords(
+        $start,
+        $length,
+        $searchValue,
+        $orderColumn,
+        $orderDir
+    );
 
     $data = [];
     $counter = $start + 1;
+
     foreach ($result['data'] as $row) {
         $row['row_number'] = $counter++;
         $data[] = $row;

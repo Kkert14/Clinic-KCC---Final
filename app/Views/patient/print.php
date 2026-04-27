@@ -9,6 +9,7 @@
 
     <div class="header">
         <img src="<?= base_url('assets/img/KCC_Logo.jpg') ?>" class="logo">
+        <img src="<?= base_url('assets/img/school_clinic_logo_kcc.png') ?>" class="logo">
         <div class="clinic-name">Kabankalan Catholic College, Inc.</div>
         <div class="sub">Patient Medical Record</div>
     </div>
