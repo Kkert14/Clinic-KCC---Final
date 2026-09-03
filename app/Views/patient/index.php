@@ -24,7 +24,6 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-
           <div class="card dash-card">
             <div class="card-header border-0">
               <h3 class="card-title d-flex align-items-center">
@@ -33,12 +32,16 @@
                 </span>
                 List of Patients
               </h3>
-              <div class="card-tools">
+              <div class="card-tools d-flex align-items-center">
+                <select id="departmentFilter" class="form-control form-control-sm mr-2" style="width: 160px;">
+                  <option value="">All Departments</option>
+                  <option value="Elementary">Elementary</option>
+                  <option value="Highschool">Highschool</option>
+                  <option value="Senior">Senior</option>
+                  <option value="College">College</option>
+                </select>
                 <button type="button" class="btn btn-sm btn-primary px-3" data-toggle="modal" data-target="#AddNewModal">
-                   <!-- new. fa fa-plus-circle mr-1   
-                     old. fa fa-plus-circle fa fw
-                -->
-                <i class="fa fa-plus-circle mr-1"></i> Add New
+                  <i class="fa fa-plus-circle mr-1"></i> Add New
                 </button>
               </div>
             </div>

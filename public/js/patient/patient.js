@@ -202,21 +202,19 @@ $(document).on("click", ".view-btn", function () {
 $(document).on("click", ".print-btn", function () {
   window.open(baseUrl + "patient/print/" + $(this).data("id"), "_blank");
 });
-
 // ── DataTable ────────────────────────────────────────────────────────────────
 $(document).ready(function () {
-  $("#example1").DataTable({
+  const table = $("#example1").DataTable({           // ← capture reference
     processing: true,
     serverSide: true,
     order: [[2, "asc"]],
     ajax: {
       url:  baseUrl + "patient/fetchRecords",
       type: "POST",
-      // FIX: send CSRF token in the POST body, not as a header.
-      // CI4 validates CSRF from the request body by default.
       data: function (d) {
         d[$('meta[name="csrf-name"]').attr("content")] =
           $('meta[name="csrf-token"]').attr("content");
+        d.department = $("#departmentFilter").val();   // ← added
         return d;
       },
     },
@@ -231,8 +229,6 @@ $(document).ready(function () {
       { data: "birthdate" },
       { data: "contact" },
       {
-        // "parents" is a GROUP_CONCAT string from the server, e.g.:
-        // "Smith, John (Father) | Doe, Jane (Mother)"
         data: "parents",
         render: function (data) {
           return data && data.trim() ? data : "—";
@@ -255,5 +251,10 @@ $(document).ready(function () {
     ],
     responsive: true,
     autoWidth:  false,
+  });
+
+  // ── Reload table when the department filter changes ────────────────────────
+  $("#departmentFilter").on("change", function () {
+    table.draw();          // reset to page 1 and re-query with the new filter
   });
 });

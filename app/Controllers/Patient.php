@@ -293,7 +293,6 @@ public function delete($id){
         return $this->response->setJSON(['success' => false, 'message' => 'Failed to delete Record.']);
     }
 }
-
 public function fetchRecords()
 {
     $request = service('request');
@@ -302,6 +301,7 @@ public function fetchRecords()
     $start = $request->getPost('start') ?? 0;
     $length = $request->getPost('length') ?? 10;
     $searchValue = $request->getPost('search')['value'] ?? '';
+    $department = $request->getPost('department') ?? '';   // ← added
 
     //Sorting part
     $orderColumnIndex = $request->getPost('order')[0]['column'] ?? 2;
@@ -328,7 +328,8 @@ public function fetchRecords()
         $length,
         $searchValue,
         $orderColumn,
-        $orderDir
+        $orderDir,
+        $department          // ← added
     );
 
     $data = [];
