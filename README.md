@@ -47,5 +47,5 @@ This project is open-source and available under the MIT License.
 
 🔐Use this account to access the system:
 
-Email: admin@gmail.com
+User: Admin
 Password: admin
